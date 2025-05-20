@@ -7,4 +7,4 @@ const sum3 = (x: number, y: number) => {
 
 
 //error
-console.log(">>> check sum3 = ", sum3(5, '10')); //15
+// console.log(">>> check sum3 = ", sum3(5, '10')); //15
