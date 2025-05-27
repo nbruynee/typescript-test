@@ -13,7 +13,7 @@ console.log("Check name4: ", name4)
 // =>TS will guess whether the type is string or number
 // encourage
 // let scores : (string | number)[ ] = ['Programming', 5, 'Software Design', 4];
-let test3: (number | string) [] = ["Bruyne ne", 22];
+let test3: (number | string)[] = ["Bruyne ne", 22];
 
 test3.push("King kevin")
 test3.push(30)
