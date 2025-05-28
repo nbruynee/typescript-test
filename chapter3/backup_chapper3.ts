@@ -264,7 +264,7 @@ switch (product.name) {
     case 'laptop':
         discount1 = 15;
         break;
-    default : discount1 = 100;
+    default: discount1 = 100;
 }
 console.log(`There is a ${discount1}% on ${product.name}.`);
 
@@ -283,11 +283,11 @@ switch (product.name) {
         break;
     case 'tablet':
         discount2 = 10;
-        // break;
+    // break;
     case 'laptop':
         discount2 = 15;
-        // break;
-    default : discount2 = 100; // result this block code = 100
+    // break;
+    default: discount2 = 100; // result this block code = 100
 }
 console.log(`There is a ${discount2}% on ${product.name}.`);
 // When a switch case in JavaScript omits(bỏ qua) the break statement, 
@@ -338,14 +338,94 @@ console.log(count1); //45
 //     return a + b;
 // }
 
-function sum1(a: number, b: number) {
+// Function is a collection of code blocks that can be: read/used and reused.
+// Similar to javascript, the difference of TS is that it specifies(qui định)(forces) 
+// the type of the variable and function
+// before:
+// function name(parameter1, parameter2,...){
+// // do something
+// }
+// after
+// function name(parameter1: type, parameter2: type,...): returnType {
+// // do something
+// }
+// example:
+function add(a: number, b: number): number {
     return a + b;
 }
-
-// anonymous function () => {}
-const sum5 = (a: number, b: number) => {
-    return a + b;
+// let sum = add('10', '20'); //error
+// 2. Use with arrow function
+let sum10 = (x: number, y: number): number => {
+    return x + y;
 }
-
-console.log(">>Check sum: ", sum1(6, 9))
+sum10(10, 20); //returns 30
 // -------------------------------------------------------------------------------------//
+// lesson 28: function type 
+const sum11 = (x: number, y: number) => {
+    return x + y;
+}
+
+console.log(">>Check sum: ", sum11(6, 9))
+
+const sum12 = (x: number, y: number): number => {
+    return x + y;
+}
+
+console.log(">>Check sum: ", sum12(6, 9))
+// -------------------------------------------------------------------------------------//
+// lesson 29: TypeScript Optional Parameters 
+// With Javascript, we can call a function without passing input, 
+// even though the function requires input parameters.
+// Example: function test(x,y,z) {
+// console.log("x = ", x , " y = ", y , "z = ", z);
+// }
+// test() // run ok without any errors
+// With Typescript, if we do the same as the example above, it will have errors 
+// because: TS compiles the code and:
+// - Checks the number of parameters to be passed to a function
+// - Data types (types) passed to each parameter
+// So how to 'fix' the above case ???
+// ------------------------
+// Optional Parameters:
+// To use, we use the ? after declaring parameter name
+// function multiply(a: number, b: number, c?: number): number {
+// if (typeof c !== 'undefined') {
+// return a * b * c;
+// }
+// return a * b;
+// }
+// => if no parameter is passed => JS/TS will assign the value
+
+const sum13 = (x: number, y: number, z?: number) => {
+    if (z) {
+        return x + y + z;
+    }
+    return x + y;
+}
+
+console.log("Check sum 13: ", sum13(1, 2), sum13(1, 2, 3))
+// NaN: not a number, undefined, null
+
+
+// => if no parameter is passed => JS/TS will assign the value 
+// 'undefined' function multiply(a: number, b?: number, c: number): number {
+// if (typeof c !== 'undefined') {
+// return a * b * c;
+// }
+// return a * b;
+// }
+// => note when checking code
+const sum14 = (x: number, y: number | undefined, z: number) => {
+    if (y) {
+        return x + y + z;
+    }
+    return x + z;
+}
+
+console.log("Check sum 13: ", sum14(2, undefined, 3), sum14(1, 2, 3))
+// -------------------------------------------------------------------------------------//
+// lesson 30:
+
+// -------------------------------------------------------------------------------------//
+
+
