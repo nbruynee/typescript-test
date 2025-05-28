@@ -35,6 +35,7 @@ else {
 }
 console.log(`You got ${discount}% discount.`);
 
+// -------------------------------------------------------------------------------------//
 // lesson 21: (Switch-case)
 
 // Syntax
@@ -126,6 +127,7 @@ switch (month) {
 }
 console.log(`Themonth ${month} in ${year} has ${day} days`);
 
+// -------------------------------------------------------------------------------------//
 //lesson 23: Loop for 
 // 1. Syntax for loop
 // We can use if/else switch/case, however, with loop, it helps the code shorter and execute multiple times
@@ -206,3 +208,144 @@ while (counter1 < 5) {
     if (counter1 % 2 === 0) break;
     counter1++;
 }
+// -------------------------------------------------------------------------------------//
+// chapter 24: do..while
+// 1. Syntax
+// do {
+//     do something
+// } while (condition);
+let counter2 = 1;
+do {
+    console.log(counter2);
+    if (counter2 % 2 === 0) break;
+    counter2++;
+} while (counter2 < 5)
+// 2. Difference between do...while and while
+// - do...while always runs at least once
+let i2 = 20;
+do {
+    console.log(">>> i= ", i2);
+    i2++;
+} while (i2 < 10);
+
+// -------------------------------------------------------------------------------------//
+// lesson 25: break 
+// We can use keyword break inside for, while and do..while loops
+// use keyword break inside for  
+let products = [
+    { name: 'phone', price: 700 },
+    { name: 'tablet', price: 900 },
+    { name: 'laptop', price: 1200 }
+];
+
+for (let e = 0; e < products.length; e++) {
+    if (products[e].price == 900) {
+        break;
+    }
+    console.log(products[e].name);
+}
+
+
+// use keyword break inside switch...case
+let products1 = [
+    { name: 'phone', price: 700 },
+    { name: 'tablet', price: 900 },
+    { name: 'laptop', price: 1200 }
+];
+let discount1 = 0;
+let product = products1[1];
+switch (product.name) {
+    case 'phone':
+        discount1 = 5;
+        break;
+    case 'tablet':
+        discount1 = 10;
+        break;
+    case 'laptop':
+        discount1 = 15;
+        break;
+    default : discount1 = 100;
+}
+console.log(`There is a ${discount1}% on ${product.name}.`);
+
+
+// without use break in switch...case
+let products2 = [
+    { name: 'phone', price: 700 },
+    { name: 'tablet', price: 900 },
+    { name: 'laptop', price: 1200 }
+];
+let discount2 = 0;
+let product1 = products1[1];
+switch (product.name) {
+    case 'phone':
+        discount2 = 5;
+        break;
+    case 'tablet':
+        discount2 = 10;
+        // break;
+    case 'laptop':
+        discount2 = 15;
+        // break;
+    default : discount2 = 100; // result this block code = 100
+}
+console.log(`There is a ${discount2}% on ${product.name}.`);
+// When a switch case in JavaScript omits(bỏ qua) the break statement, 
+// the execution flow "falls through(rơi qua)" to the next case, regardless (bất kể) 
+// of whether the subsequent(tiếp theo) case's condition matches(khớp) the switch 
+// expression(biểu thức). This behavior continues until a break statement or 
+// the end of the switch block is encountered(gặp phải).
+// -------------------------------------------------------------------------------------//
+// chapter 26: TypeScript continue 
+// Similar to break, continue is used in for, while and do...while loops
+// If break is used to end the 'whole' loop, continue signals to skip 
+// the 'first run' of the loop body. The loop does not execute that run,
+//  but continues to run the next run.
+// use keyword continue with loop for 
+for (let index = 0; index < 9; index++) {
+    // if index is odd,skip it 
+    if (index % 2 === 1) {
+        continue;
+    }
+    // the following code will be skipped for odd numbers 
+    console.log(index);
+}
+
+// use keyword continue with loop while 
+let index = -1;
+while (index < 9) {
+    index = index + 1;
+    if (index % 2)
+        continue;
+    console.log(index);
+}
+
+// use keyword continue with loop do..while 
+let index1 = 9;
+let count1 = 0;
+do {
+    index += 1;
+    if (index % 2) {
+        continue;
+    }
+    count1 += 1;
+} while (index1 < 99);
+console.log(count1); //45
+// -------------------------------------------------------------------------------------//
+// lesson 27: functions typescript
+// type declare of js 
+// function sum2(a, b) {
+//     return a + b;
+// }
+
+function sum1(a: number, b: number) {
+    return a + b;
+}
+
+// anonymous function () => {}
+const sum5 = (a: number, b: number) => {
+    return a + b;
+}
+
+console.log(">>Check sum: ", sum1(6, 9))
+// -------------------------------------------------------------------------------------//
