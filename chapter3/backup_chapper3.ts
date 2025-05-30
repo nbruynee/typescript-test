@@ -424,8 +424,78 @@ const sum14 = (x: number, y: number | undefined, z: number) => {
 
 console.log("Check sum 13: ", sum14(2, undefined, 3), sum14(1, 2, 3))
 // -------------------------------------------------------------------------------------//
-// lesson 30:
+// lesson 30: TypeScript Default Parameters
+// If optional Parameter allows us to 'pass' or 'not pass' input to functions,
+// and in case of 'not passing', the value we get is undefined
+// => sometimes we want a default value (other than undefined) in that case :v
+// With javascript (from ES6)
+// function name(parameter1 = defaultValue1,...){
+// //do something
+// }
+// let applyDiscount = (price, discount = 0.05) => {
+//     return price * (1 - discount);
+// }
+// console.log(applyDiscount(100)); //95
+// console.log(applyDiscount(100, 0.99)); //
+// with TypeScript:
+// function name(parameter1:type = defaultvalue1, parameter2:type =defaultvalue2,...)
+// { 
+// // do something
+// }
+let applyDiscount = (price: number, discount: number = 0.05): number => {
+    return price * (1 - discount);
+}
+console.log(applyDiscount(100));//95
+// ----------------------------------
+let sum5 = (x: number, y: number, z = false) => {
+    if (z === false) {
+        return x + y;
+    }
 
+    if (z) {
+        return x - y;
+    }
+}
+
+console.log("Check parameter:", sum5(1, 2), sum5(1, 2, true))
 // -------------------------------------------------------------------------------------//
+// lesson 31: Rest: phần còn lại
+// With TypeScript, Rest parameters have the following rules:
+// - A function has only 1 parameter rest 
+// - must be the last parameter in the parameter list
+// - must be used with array type
+// syntax:
+// function fn(...rest: type[]){
+// //...
+// }
+function getTotal(...numbers: number[]): number {
+    let total = 0;
+    numbers.forEach((num) => total += num);
+    return total;
+}
+// console.log(getTotal());//0
+// console.log(getTotal(10, 20));//30
+// console.log(getTotal(10, 20, 30));//60
+
+function multiply(n: number, ...m: number[]) {
+    return m.map((x) => {
+        // console.log("Check x = ", x);
+        return n * x
+    }
+    );
+}
+// 'a' gets value[10,20,30,40]
+const a5 = multiply(10, 1, 2, 3, 4);
+// console.log("Check multiply:", a5);
+let Greet = (greeting: string, ...names: string[]) => {
+    return greeting + "" + names.join(",") + "!";
+}
+Greet("Hello", "Steve", "Bill"); //returns"Hello Steve, Bill!"
+Greet("Hello");//returns "Hello !"
+
+// The join() method returns an array as a string and does not change the 
+// original array.
+// -------------------------------------------------------------------------------------//
+
 
 
