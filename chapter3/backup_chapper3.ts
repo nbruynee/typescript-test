@@ -496,6 +496,78 @@ Greet("Hello");//returns "Hello !"
 // The join() method returns an array as a string and does not change the 
 // original array.
 // -------------------------------------------------------------------------------------//
+// lesson 32: TypeScript Function Overloading 
+// Union types are used when a value can be more than a single type.
+// Such as when a property would be string or number.
+// -Note: Overloadings of Typescript Different from other programming languages, 
+// for example C# or java
+function addNumbers(a: number, b: number): number {
+    return a + b;
+}
 
+function addStrings(a: string, b: string): string {
+    return a + b;
+}
+// 2 functions do the same task => can be combined(kết hợp, gộp) into 1 with
+// union type function add(a: number | string, b: number | string): number | string{
+
+// function add(a: number | string, b: number | string): number | string { 
+//     if (typeof a === 'number' && typeof b === 'number')
+//         return a + b;
+//     if (typeof a === 'string' && typeof b === 'string')
+//         return a + b;
+// }
+// Function lacks(thiếu)(not enough) ending return statement and return type
+// does not include 'undefined'
+
+function add1(a: number | string, b: number | string) {
+    if (typeof a === 'number' && typeof b === 'number')
+        return a + b;
+    if (typeof a === 'string' && typeof b === 'string')
+        return a + b;
+}
+
+// }
+// With union type, we cannot see the 'relationship' between data types, 
+// and still have 'repetitive'(lặp code) code
+// function add(a: number, b: number): number;
+// function add(a: string, b: string): string;
+// function add(a: any, b: any): any {
+//     return a + b;
+// }
+
+// Note how TS overloading works unlike other languages, 
+// for example: class MethodOverloading {
+// private static void display(int a){
+// System.out.println("Arguments: " + a);
+// }
+// private static void display(int a, int b){
+// System.out.println("Arguments: " + a + " and " + b);
+// }
+// public static void main(String[] args) {
+// display(1);
+// display(1, 4);
+// }
+// }
+// ---
+// method overloading:
+class Counter {
+    private current: number = 0;
+    count(): number;
+    count(target: number): number[];
+    count(target?: number): number | number[] {
+        if (target) {
+            let values: number[] = [];
+            for (let start = this.current; start <= target; start++) {
+                values.push(start);
+            }
+            return values;
+        }
+        return ++this.current;
+    }
+}
+let counter111 = new Counter();
+console.log(counter111.count()); // return a number
+console.log(counter111.count(20)); // return an array
 
 
